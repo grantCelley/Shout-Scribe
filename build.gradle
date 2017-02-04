@@ -1,0 +1,38 @@
+/*
+*This is the build script for Shout Scribe
+*@author Grant E. Celley
+*/
+
+apply plugin: 'java'
+
+version = "0.5"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
+dependencies {
+    compile group: 'edu.cmu.sphinx', name: 'sphinx4-core', version:'5prealpha-SNAPSHOT'
+    compile group: 'edu.cmu.sphinx', name: 'sphinx4-data', version:'5prealpha-SNAPSHOT'
+}
+
+jar{
+  manifest.attributes 'Main-Class':'com.shout.scribe.ShoutScribe'
+
+}
+
+task run(type: JavaExec){
+  classpath = sourceSets.main.runtimeClasspath
+  main = 'com.shout.scribe.ShoutScribe'
+
+
+}
+
+task fatJar(type:Jar){
+  manifest.attributes 'Main-Class':'com.shout.scribe.ShoutScribe'
+  baseName = project.name + '-all'
+  from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
