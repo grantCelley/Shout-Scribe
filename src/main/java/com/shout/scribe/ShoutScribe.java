@@ -1,6 +1,6 @@
 /**
  * This is the display and main class of the project
- * @author Grant E. Celley
+ * @author Grant E. Celley <grant.celley@gmail.com>
  */
 
 package com.shout.scribe;

@@ -1,21 +1,39 @@
+/**
+ * The file contains the Dictator class
+ * It does all the dictation
+ * @author Grant E. Celley <grant.celley@gmail.com>
+ * @version 0.5
+ */
 package com.shout.scribe;
 
+//the imports
 import java.io.IOException;
-
+//the imports from sphinx(the speech to text engin
 import edu.cmu.sphinx.api.Configuration;
 import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
 
 public class Dictator extends Thread {
 
-	ShoutScribe ss;
-	boolean cont;
-
+	ShoutScribe ss;//the ShoutScribe that created this object
+	boolean cont;//a conditional if we should continue dictation
+	
+	/**
+	 * The constructor of the class
+	 * @param shoutScribe the ShoutScribe it needs to communicate with
+	 * @author Grant E. Celley
+	 */
 	public Dictator(ShoutScribe shoutScribe) {
 		this.ss = shoutScribe;
 
 	}
-
+	
+	/**
+	 * The run function from the thread class
+	 * this will run as a different thread
+	 * this will do all of the dictation
+	 * @author Grant E. Celley
+	 */
 	public void run() {
 		cont = true;
 		while(cont){
@@ -48,7 +66,11 @@ public class Dictator extends Thread {
 			}
 		}
 	}
-
+	
+	/**
+	 * this will end the loop
+	 * @author Grant E. Celley
+	 */
 	public void end() {
 		cont = false;
 	}
