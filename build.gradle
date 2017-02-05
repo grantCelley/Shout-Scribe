@@ -1,35 +1,60 @@
-/*
+/**
 *This is the build script for Shout Scribe
-*@author Grant E. Celley
+*@author Grant E. Celley <grant.celley@gmail.com>
 */
 
+//applys the built in java plugin
 apply plugin: 'java'
 
-version = "0.5"
+version = "0.5"//the version. It will show up in the jar file
 
+
+/**
+ *This will add the repositories
+ *This will add the repository for shpinx on a custom repository
+ *It also needs the repository for a dependency for sphinx
+ *@author Grant E. Celley
+ */
 repositories {
     mavenCentral()
     mavenLocal()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
+/**
+*The dependencies
+*one is for the library for sphinx
+*the other is the dictionary for sphinx
+*@author Grant E. Celley
+*/
 dependencies {
     compile group: 'edu.cmu.sphinx', name: 'sphinx4-core', version:'5prealpha-SNAPSHOT'
     compile group: 'edu.cmu.sphinx', name: 'sphinx4-data', version:'5prealpha-SNAPSHOT'
 }
 
+/**
+*This will add the main class to the jars that is normally built
+*@author Grant E. Celley
+*/
 jar{
   manifest.attributes 'Main-Class':'com.shout.scribe.ShoutScribe'
 
 }
 
+/**
+*This will run the program
+*@author Grant E. Celley
+*/
 task run(type: JavaExec){
   classpath = sourceSets.main.runtimeClasspath
   main = 'com.shout.scribe.ShoutScribe'
-
-
 }
 
+/**
+*This will make a jar with all the dependencies
+*the name of the file is Shout Scribe-version-all.jar
+*@author Grant E. Celley
+*/
 task fatJar(type:Jar){
   manifest.attributes 'Main-Class':'com.shout.scribe.ShoutScribe'
   baseName = project.name + '-all'
