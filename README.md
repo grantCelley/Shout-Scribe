@@ -1,6 +1,6 @@
 # Shout Scribe
 
-This is completely free and open source dictation software running on Sphinx 4 speech to text.
+This is completely free and open source dictation software running on Sphinx 4 speech to text engine.
 
 # License
 The License can be found in the [License file](LICENSE).
